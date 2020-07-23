@@ -28,7 +28,8 @@ class Player:
     #Description: Adds a tag object to the player's list of availabilities.
 
     def addAvailability(self, tag):
-        self.availabilities.append(tag)
+        if not util.isInList(self.availabilities, tag):
+            self.availabilities.append(tag)
 
     #removeAvailability Function
     #Inputs: a tag object
@@ -93,7 +94,8 @@ class Tag:
     #Description: Assigns a player object to an availability tag
 
     def assignPlayer(self, player):
-        self.players.append(player)
+        if not util.isInList(self.players, player):
+            self.players.append(player)
 
     #removePlayer Function
     #Inputs: a Player object
