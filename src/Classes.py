@@ -57,7 +57,7 @@ class Player:
         length = len(self.availabilities)
         if length == 0:
             out = out + "No Activities"
-        else if length == 1:
+        elif length == 1:
             out = out + self.availabilities[0].name
         else:
             iter = 1
@@ -74,7 +74,7 @@ class Player:
     #Description: Formats and returns the player's information as a string (for debugging)
 
     def printSelf(self):
-        out = "Name: " + self.name + " ID: " + self.playerID
+        out = "Name: " + self.name + "\nID: " + str(self.playerID)
         return(out)
 
 #-----------------------------

@@ -3,7 +3,7 @@
 import discord
 import json
 import asyncio
-
+import Classes as cl
 
 #Open config.json for data access
 with open('/home/pi/Destiny2LFGDiscordBot/resources/config.json') as f:
@@ -12,7 +12,7 @@ with open('/home/pi/Destiny2LFGDiscordBot/resources/config.json') as f:
 
 client = discord.Client()
 testingChannel = 591362273885552660
-
+playerDict = dict()
 
 
 
@@ -65,10 +65,29 @@ async def on_message(message):
 		elif message.content.startswith('!remove'):
 			await message.channel.send("Not implemented yet")
 
+			#adds a new player to the list
+			#format: !register
+		elif message.content.startswith('!register'):
+			newPlayer = cl.Player(message.author.nick, message.author.id)
+			if newPlayer.playerID not in playerDict.keys():
+				playerDict[newPlayer.playerID] = newPlayer
+				await message.channel.send("Success! You have been registered!")
+			else:
+				await message.channel.send("You are already a registered player.")
+
 			#Adds a tag to the user
 			#format: !add {tag}
 		elif message.content.startswith('!add'):
 			await message.channel.send("Not implemented yet")
+
+			#test command, prints list of all registered players
+		elif message.content.startswith("!printlist"):
+			out = ""
+			for player in playerDict:
+				current = playerDict[player]
+				out = out+"\n"+ current.printSelf()+"\n"+current.printTags()
+			await message.channel.send(out)
+
 
 		else:#Catches non valid commands
 			if message.author.id == 310488286772723712:
