@@ -6,7 +6,7 @@ import asyncio
 
 
 #Open config.json for data access
-with open('/home/pi/Documents/lfgbot/resources/config.json') as f:
+with open('/home/pi/Destiny2LFGDiscordBot/resources/config.json') as f:
 	config = json.load(f)
 
 
